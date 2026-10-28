@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summer Vacation - Zhongli & Childe</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #3a7bd5 0%, #3a6073 40%, #00d2ff 80%, #f7d070 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Hiệu ứng nền biển & sóng */
+    .sun-light {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 236, 179, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: pulse 4s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { transform: translateX(-50%) scale(0.9); opacity: 0.7; }
+      100% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+    }
+
+    /* Container chính */
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 24px;
+      padding: 25px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header */
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      letter-spacing: 1px;
+    }
+
+    p.subtitle {
+      font-size: 1rem;
+      color: #e0f2fe;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    /* Frame chứa ảnh */
+    .image-wrapper {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      border: 4px solid rgba(255, 255, 255, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: #e0f2fe;
+    }
+
+    .image-wrapper:hover {
+      transform: scale(1.02);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      max-height: 520px;
+    }
+
+    /* Bảng tương tác */
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 126, 95, 0.4);
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 126, 95, 0.6);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      box-shadow: 0 4px 12px rgba(0, 198, 255, 0.4);
+    }
+
+    .btn-secondary:hover {
+      box-shadow: 0 6px 16px rgba(0, 198, 255, 0.6);
+    }
+
+    /* Khung Lời thoại / Quote */
+    .quote-box {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      font-size: 0.95rem;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 4px solid #f7d070;
+    }
+
+    /* Sao biển / Bong bóng bay */
+    .floating-item {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      animation: floatUp 8s linear infinite;
+      font-size: 20px;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      margin-top: 25px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.8);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sun-light"></div>
+
+  <div class="container">
+    <h1>🌴 Kỳ Nghỉ Bãi Biển Rực Rỡ 🏖️</h1>
+    <p class="subtitle">Zhongli & Childe enjoying a sunny day together</p>
+
+    <!-- Ảnh Chili Bãi Biển -->
+    <div class="image-wrapper">
+      <img src="chili bãi biển.jpg" alt="Zhongli và Childe ở bãi biển">
+    </div>
+
+    <!-- Khung Quote ngẫu nhiên -->
+    <div class="quote-box" id="quote-text">
+      "Một ly đồ uống mát lạnh giữa cái nắng mùa hè cùng tri kỷ thật tuyệt vời!" ✨
+    </div>
+
+    <!-- Thanh nút bấm interactive -->
+    <div class="controls">
+      <button class="btn" onclick="changeQuote()">💬 Đổi Lời Thoại</button>
+      <button class="btn btn-secondary" onclick="toggleAudio()">🎵 Nhạc Biển (Bật/Tắt)</button>
+      <button class="btn" onclick="addSparkle()">✨ Tạo Hiệu Ứng lấp lánh</button>
+    </div>
+  </div>
+
+  <footer>
+    Made with ❤️ for Genshin Impact Fans | Zhongli & Childe Summer Special
+  </footer>
+
+  <!-- Audio nhạc nền sóng biển nhẹ nhàng -->
+  <audio id="bg-music" loop>
+    <source src="https://assets.mixkit.co/active_storage/sfx/2515/2515-preview.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Danh sách các câu thoại vui về Zhongli & Childe ở biển
+    const quotes = [
+      "Childe: 'Này Zhongli, ly nước trái cây dừa này ngon đấy chứ? Để tôi trả tiền cho!' 🍹",
+      "Zhongli: 'Gió biển hôm nay mang theo hương vị đặc trưng của Liyue. Thật thư thái.' 🌊",
+      "Childe: 'Mấy con cua biển nhỏ này trông nhộn nhịp thật, nhưng không bằng một trận đấu võ đâu!' 🦀",
+      "Zhongli: 'Tận hưởng ánh nắng mặt trời và những khoảnh khắc bình yên như thế này thật quý giá.' ☀️",
+      "Childe: 'Để tôi đi gọi thêm hải sản nướng nhé, hôm nay tôi bao trọn gói!' 🍢"
+    ];
+
+    function changeQuote() {
+      const quoteBox = document.getElementById('quote-text');
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      quoteBox.style.opacity = 0;
+      setTimeout(() => {
+        quoteBox.innerText = quotes[randomIndex];
+        quoteBox.style.opacity = 1;
+      }, 200);
+    }
+
+    // Phát nhạc sóng biển
+    let isPlaying = false;
+    function toggleAudio() {
+      const music = document.getElementById('bg-music');
+      if (isPlaying) {
+        music.pause();
+        isPlaying = false;
+      } else {
+        music.play().catch(() => {
+          alert('Hãy tương tác với trang web trước để phát nhạc nhé!');
+        });
+        isPlaying = true;
+      }
+    }
+
+    // Tạo các bong bóng / sao biển bay lơ lửng trên màn hình
+    function createFloatingItems() {
+      const icons = ['✨', '🌊', '🐚', '🦀', '🌺', '⭐'];
+      for (let i = 0; i < 15; i++) {
+        const item = document.createElement('div');
+        item.className = 'floating-item';
+        item.innerText = icons[Math.floor(Math.random() * icons.length)];
+        item.style.left = Math.random() * 100 + 'vw';
+        item.style.animationDuration = (5 + Math.random() * 5) + 's';
+        item.style.animationDelay = (Math.random() * 5) + 's';
+        document.body.appendChild(item);
+      }
+    }
+
+    function addSparkle() {
+      for (let i = 0; i < 8; i++) {
+        const item = document.createElement('div');
+        item.className = 'floating-item';
+        item.innerText = '✨';
+        item.style.left = Math.random() * 100 + 'vw';
+        item.style.animationDuration = '3s';
+        document.body.appendChild(item);
+        setTimeout(() => item.remove(), 3000);
+      }
+    }
+
+    // Chạy hiệu ứng khi tải trang
+    window.onload = createFloatingItems;
+  </script>
+</body>
+</html>
